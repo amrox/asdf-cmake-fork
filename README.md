@@ -1,37 +1,78 @@
-# asdf-cmake [![Build Status](https://travis-ci.org/srivathsanmurali/asdf-cmake.svg?branch=master)](https://travis-ci.org/srivathsanmurali/asdf-cmake)
+<div align="center">
 
-CMake plugin for [asdf](https://github.com/asdf-vm/asdf) version manager
+# asdf-cmake [![Build](https://github.com/amrox/asdf-cmake/actions/workflows/build.yml/badge.svg)](https://github.com/amrox/asdf-cmake/actions/workflows/build.yml) [![Lint](https://github.com/amrox/asdf-cmake/actions/workflows/lint.yml/badge.svg)](https://github.com/amrox/asdf-cmake/actions/workflows/lint.yml)
 
-## Usage
 
-### Install
+[cmake](https://cmake.org/documentation) plugin for the [asdf version manager](https://asdf-vm.com).
 
-The plugin can be install using the following command.
+</div>
 
+This plugin will try to install an [official binary release of CMake](https://github.com/Kitware/CMake/releases), but can also build and install from source if necessary or desired.
+
+# Contents
+
+- [Dependencies](#dependencies)
+- [Install](#install)
+- [Contributing](#contributing)
+- [License](#license)
+
+# Dependencies
+
+- `bash`, `curl`, `tar`: generic POSIX utilities.
+- *optional* Qt installation if compiling from source and wanting `cmake-gui`
+
+# Install
+
+Plugin:
+
+```shell
+asdf plugin add cmake https://github.com/amrox/asdf-cmake.git
 ```
-asdf plugin-add cmake https://github.com/srivathsanmurali/asdf-cmake.git
-asdf install cmake <version>
+
+cmake:
+
+```shell
+# Show all installable versions
+asdf list-all cmake
+
+# Install specific version
+asdf install cmake latest
+
+# Set a version globally (on your ~/.tool-versions file)
+asdf global cmake latest
+
+# Now cmake commands are available
+cmake --version
 ```
 
-#### cmake-gui
+Check [asdf](https://github.com/asdf-vm/asdf) readme for more instructions on how to
+install & manage versions.
 
-If you have Qt installed on your machine you can get the `cmake-gui` program built by providing the path to the Qt binary directory in the `QTBINDIR` environment variable when invoking `asdf install cmake`.
+## cmake-gui
 
-For instance, on a Mac with Qt installed using `brew` that would be :
+Binary installations include `cmake-gui` by default.
 
-```
+If installing from source, and you have Qt installed on your machine you can
+get the cmake-gui program built by providing the path to the Qt binary
+directory in the QTBINDIR environment variable when invoking asdf install
+cmake.
+
+For instance, on a Mac with Qt installed using brew that would be :
+
 QTBINDIR=/usr/local/opt/qt/bin asdf install cmake <version>
-```
+# Configuration
 
-### .tool-versions file
+A few environment variables can affect this plugin:
 
-You can specify the version to install with a line like so in your .tool-versions file:
-cmake <version>
+- `ASDF_CMAKE_FORCE_SOURCE_INSTALL`: Set to `1` to force a source-based installation instead of using a pre-compiled binary, even if a binary release is available.
+- `QTBINDIR`: Set to your Qt installation to build `cmake-gui`, if CMake is being built from source.
 
-### Using the CLI
+# Contributing
 
-You can then set the local/global version to your new version with `asdf local cmake <version>` or `asdf global cmake <version>`.
+Contributions of any kind welcome! See the [contributing guide](contributing.md).
 
-## Use
+[Thanks goes to these contributors](https://github.com/amrox/asdf-cmake/graphs/contributors)!
 
-Check [asdf](https://github.com/asdf-vm/asdf) readme for instructions on how to install & manage versions of CMake.
+# License
+
+See [LICENSE](LICENSE) © [Andy Mroczkowski](https://github.com/amrox/)
