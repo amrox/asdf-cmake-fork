@@ -75,4 +75,4 @@ Contributions of any kind welcome! See the [contributing guide](contributing.md)
 
 # License
 
-See [LICENSE](LICENSE) © [Andy Mroczkowski](https://github.com/amrox/)
+See [LICENSE](LICENSE)
